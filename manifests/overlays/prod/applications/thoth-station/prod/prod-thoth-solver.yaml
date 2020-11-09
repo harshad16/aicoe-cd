@@ -1,0 +1,18 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prod-thoth-solver
+spec:
+  project: thoth-prod
+  source:
+    repoURL: 'https://github.com/thoth-station/thoth-application.git'
+    path: solver/overlays/prod
+    targetRevision: master
+  destination:
+    server: 'https://api.ocp.prod.psi.redhat.com:6443'
+    namespace: thoth-middletier-prod
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

@@ -1,0 +1,16 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prod-thoth-qeb-hwt
+spec:
+  project: thoth-prod
+  source:
+    repoURL: 'https://github.com/thoth-station/thoth-application.git'
+    path: qeb-hwt-github-app/overlays/prod
+    targetRevision: HEAD
+  destination:
+    server: 'https://api.ocp.prod.psi.redhat.com:6443'
+    namespace: thoth-frontend-prod
+  syncPolicy:
+    automated: {}
